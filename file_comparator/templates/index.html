@@ -10,7 +10,7 @@
     }
     div.mycontainer2 {
       width:100%;
-      overflow:auto;
+      overflow:scroll;
     }
 div.mycontainer2 div {
   width:33%;  
@@ -37,7 +37,7 @@ div.mycontainer2 div {
 <h2>Difference as follows:</h2>
 <div class="mycontainer2">
 
-    <div class="child" style="width:49%;border: 1px solid black;">
+    <div class="child" style="width:49%;border: 1px solid black;overflow:scroll;">
         <pre>
             {% set i= 0 %}
             {% for line in diff_lines1 %}
@@ -50,13 +50,12 @@ div.mycontainer2 div {
             <span style="background-color: rgba(245, 245, 248, 0.947);font-style: bold;font-size: x-large;">{{ line }}</span>
             {% endif %}
             {% endif %}
-                <br>
             {% set i= i+1 %}
             {% endfor %}
         </pre>
     </div>
 
-    <div class="child" style="width:49%; border: 1px solid black;">
+    <div class="child" style="width:49%; border: 1px solid black;overflow:scroll;">
         <pre>
             {% set i= 0 %}
             {% for line in diff_lines2 %}
@@ -69,7 +68,6 @@ div.mycontainer2 div {
             <span style="background-color: rgba(245, 245, 248, 0.947);font-style: bold;font-size: x-large;">{{ line }}</span>
             {% endif %}
             {% endif %}
-                <br>
             {% set i= i+1 %}
             {% endfor %}
         </pre>
