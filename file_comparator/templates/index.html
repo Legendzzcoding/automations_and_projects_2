@@ -10,7 +10,7 @@
     }
     div.mycontainer2 {
       width:100%;
-      overflow:auto;
+      overflow:scroll;
     }
 div.mycontainer2 div {
   width:33%;  
@@ -31,57 +31,50 @@ div.mycontainer2 div {
 <br>
 <div id="buttons">
 <input type=submit value="Submit">
-<input type="reset" value="Reset" onclick="resetForm()">
 </div>
 </form>
 {% if check_if_diff_ans_has_value != '' %}
 <h2>Difference as follows:</h2>
 <div class="mycontainer2">
 
-    <div class="child" style="width:49%;">
+    <div class="child" style="width:49%;border: 1px solid black;overflow:scroll;">
         <pre>
             {% set i= 0 %}
             {% for line in diff_lines1 %}
-            {% if color_line1[i] == 'blue' %}
-            <span style="background-color: rgba(252, 252, 252, 0.947);">{{ line }}</span>
-            {% elif color_line1[i] == 'green' %}
-            <span style="background-color: rgb(166, 239, 166);">{{ line }}</span>
+            {% if line == '-\r\n' %}
+            <span style="background-color: rgba(243, 21, 21, 0.947);font-style: bold;font-size: x-large;">{{ line }}</span>
             {% else %}
-            <span style="background-color: rgb(243, 137, 137);">{{ line }}</span>
+            {% if diff_lines2[i] == '-\r\n' %}
+            <span style="background-color: rgba(40, 238, 110, 0.947);font-style: bold;font-size: x-large;">{{ line }}</span>
+            {% else %}
+            <span style="background-color: rgba(245, 245, 248, 0.947);font-style: bold;font-size: x-large;">{{ line }}</span>
             {% endif %}
-            {% set i = i + 1 %}
-                <br>
+            {% endif %}
+            {% set i= i+1 %}
             {% endfor %}
         </pre>
     </div>
 
-    <div class="child" style="width:49%;">
+    <div class="child" style="width:49%; border: 1px solid black;overflow:scroll;">
         <pre>
             {% set i= 0 %}
             {% for line in diff_lines2 %}
-            {% if color_line2[i] == 'blue' %}
-            <span style="background-color: rgba(250, 250, 253, 0.947);">{{ line }}</span>
-            {% elif color_line2[i] == 'green' %}
-            <span style="background-color: rgb(166, 239, 166);">{{ line }}</span>
+            {% if line == '-\r\n' %}
+            <span style="background-color: rgba(240, 26, 26, 0.947);font-style: bold;font-size: x-large;">{{ line }}</span>
             {% else %}
-            <span style="background-color: rgb(243, 137, 137);">{{ line }}</span>
+            {% if diff_lines1[i] == '-\r\n' %}
+            <span style="background-color: rgba(66, 231, 124, 0.947);font-style: bold;font-size: x-large;">{{ line }}</span>
+            {% else %}
+            <span style="background-color: rgba(245, 245, 248, 0.947);font-style: bold;font-size: x-large;">{{ line }}</span>
             {% endif %}
-            {% set i = i + 1 %}
-                <br>
+            {% endif %}
+            {% set i= i+1 %}
             {% endfor %}
         </pre>
 
     </div>
 </div>
 {% endif %}
-<script>
-    function resetForm() {
-        document.getElementsByName("text_input1")[0].value = ''; // Clear the textarea
-        document.getElementsByName("text_input2")[0].value = '';
-        document.querySelector("pre").textContent = ''; // Clear the processed_text
-        document.querySelector("h2").textContent = '';
-    }
-    </script>
 </body>
 
 </html>
