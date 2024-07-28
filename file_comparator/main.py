@@ -45,18 +45,19 @@ def index():
         for line in differ.compare(f1, f2):
             marker=line[0]
             if marker == " ":
-                diff_lines1.append(line[2:])
-                diff_lines2.append(line[2:])
+                aa=line[2:]+'\r\n'##
+                diff_lines1.append(aa)
+                diff_lines2.append(aa)
                 fa.write(line[2:]+"\n")#
                 fb.write(line[2:]+"\n")#
             elif marker == "-":
-                diff_lines1.append(f'{line[2:]}')
-                diff_lines2.append("-")
+                diff_lines1.append(f'{line[2:]}\r\n')##
+                diff_lines2.append("-\r\n")##
                 fa.write(line[2:]+"\n")#
                 fb.write("-\n")#
             elif marker == "+":
-                diff_lines1.append("-")
-                diff_lines2.append(f'{line[2:]}')
+                diff_lines1.append("-\r\n")##
+                diff_lines2.append(f'{line[2:]}\r\n')##
                 fa.write("-\n")#
                 fb.write(line[2:]+"\n")#
             check_if_diff_ans_has_value='a'
